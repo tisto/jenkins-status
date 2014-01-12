@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="">
+<html ng-app="myApp">
 <head>
   <title>Bootstrap 101 Template</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +7,7 @@
   <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -39,12 +40,10 @@
 
   <div class="container">
 
-    <div ng-controller="StudentListController">
+    <div ng-controller="BuildListController">
       <div ng-repeat="build in builds"
-           class="row build failure alert alert-info">
-        <a href="{{build.id}}">{{build.id}} {{build.author}} {{build.message}} {{build.status}}</a>
-
-        <div class="col-md-1 number">#{{build.id}}</div>
+           class="row build {{build.status}} alert alert-info">
+        <div class="col-md-1 number">#{{build.number}}</div>
         <div class="col-md-4 author">{{build.author}}</div>
         <div class="col-md-6 commit">{{build.message}}</div>
         <div class="col-md-1 status">{{build.status}}</div>
@@ -52,24 +51,37 @@
     </div>
 
     <script>
+
+      var myAppModule = angular.module('myApp', []);
+
       var builds = [
         {
-          id:'1224',
+          number: '1224',
           author: 'Timo Stollenwerk (tisto) <tisto@plone.org>',
           message: 'Pep8',
-          status: 'ok'
+          status: 'progress'
         },
         {
-          id:'1223',
-          author: 'Tom Gross (tomgross) &lt;itconsense@gmail.com&gt;',
+          number: '1223',
+          author: 'Tom Gross (tomgross) <itconsense@gmail.com>',
           message: 'mini optimization',
           status: 'failure'
         },
+        {
+          number: '1221',
+          author: 'Andreas Zeidler (witsch) <az@zitc.de>',
+          message: 'use KGS from `plone.app.event` to also pin its dependencies in case it\'s needed (for dexterity)',
+          status: 'success'
+        },
       ]
 
-      function StudentListController($scope) {
-        $scope.builds = builds;
-      }
+      myAppModule.controller(
+        'BuildListController',
+        function($scope) {
+          $scope.builds = builds;
+        }
+      );
+
     </script>
 
     <div class="row build failure alert alert-info">
