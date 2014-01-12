@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html ng-app="">
+<head>
+  <title>Bootstrap 101 Template</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      padding-top: 70px;
+    }
+
+    .row {
+        margin: 0.5em 0;
+    }
+
+    .number {
+      font-weight: bold;
+    }
+
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <a class="navbar-brand" href="#">
+      Plone 5
+    </a>
+  </nav>
+
+  <div class="container">
+
+    <div ng-controller="StudentListController">
+      <div ng-repeat="build in builds"
+           class="row build failure alert alert-info">
+        <a href="{{build.id}}">{{build.id}} {{build.author}} {{build.message}} {{build.status}}</a>
+
+        <div class="col-md-1 number">#{{build.id}}</div>
+        <div class="col-md-4 author">{{build.author}}</div>
+        <div class="col-md-6 commit">{{build.message}}</div>
+        <div class="col-md-1 status">{{build.status}}</div>
+      </div>
+    </div>
+
+    <script>
+      var builds = [
+        {
+          id:'1224',
+          author: 'Timo Stollenwerk (tisto) <tisto@plone.org>',
+          message: 'Pep8',
+          status: 'ok'
+        },
+        {
+          id:'1223',
+          author: 'Tom Gross (tomgross) &lt;itconsense@gmail.com&gt;',
+          message: 'mini optimization',
+          status: 'failure'
+        },
+      ]
+
+      function StudentListController($scope) {
+        $scope.builds = builds;
+      }
+    </script>
+
+    <div class="row build failure alert alert-info">
+      <div class="col-md-1 number">
+        #1224
+      </div>
+      <div class="col-md-4 author">
+        Timo Stollenwerk (tisto) &lt;tisto@plone.org&gt;
+      </div>
+      <div class="col-md-6 commit">
+        mini optimization
+      </div>
+      <div class="col-md-1 status">
+        <i class="fa fa-refresh fa-spin"></i>
+      </div>
+    </div>
+    <div class="row build failure alert alert-danger">
+      <div class="col-md-1 number">
+        #1223
+      </div>
+      <div class="col-md-4 author">
+        Tom Gross (tomgross) &lt;itconsense@gmail.com&gt;
+      </div>
+      <div class="col-md-6 commit">
+        mini optimization
+        <span class="label label-danger">Regression</span>
+      </div>
+      <div class="col-md-1 status">
+        <i class="fa fa-exclamation-triangle"></i>
+        <span class="badge">2</span>
+      </div>
+    </div>
+    <div class="row build alert alert-success">
+      <div class="col-md-1 number">
+        #1221
+      </div>
+      <div class="col-md-4 author">
+        Andreas Zeidler (witsch) &lt;az@zitc.de&gt;
+      </div>
+      <div class="col-md-6 commit">
+        use KGS from `plone.app.event` to also pin its dependencies in case it's needed (for dexterity)
+        <span class="label label-success">Success</span>
+      </div>
+      <div class="col-md-1 status">
+        <i class="fa fa-check"></i>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
