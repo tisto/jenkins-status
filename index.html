@@ -25,6 +25,29 @@
         margin: 0.5em 0;
     }
 
+    .build {
+      border-left: 5px solid yellow;
+      padding: 20px 0;
+    }
+
+    .build-progress {
+      background-color: #D9EDF7;
+      border-color: #BCE8F1;
+      color: #31708F;
+    }
+
+    .build-success {
+         background-color: #DFF0D8;
+    border-color: #D6E9C6;
+    color: #3C763D;
+    }
+
+    .build-failure {
+       background-color: #F2DEDE;
+    border-color: #EBCCD1;
+    color: #A94442;
+    }
+
     .number {
       font-weight: bold;
     }
@@ -32,7 +55,7 @@
   </style>
 </head>
 <body>
-  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
     <a class="navbar-brand" href="#">
       Plone 5
     </a>
@@ -42,7 +65,7 @@
 
     <div ng-controller="BuildListController">
       <div ng-repeat="build in builds"
-           class="row build {{build.status}} alert alert-info">
+           class="row build build-{{build.status}}">
         <div class="col-md-1 number">#{{build.number}}</div>
         <div class="col-md-4 author">{{build.author}}</div>
         <div class="col-md-6 commit">{{build.message}}</div>
@@ -71,6 +94,18 @@
           number: '1221',
           author: 'Andreas Zeidler (witsch) <az@zitc.de>',
           message: 'use KGS from `plone.app.event` to also pin its dependencies in case it\'s needed (for dexterity)',
+          status: 'success'
+        },
+        {
+          number: '1220',
+          author: 'Andreas Zeidler (witsch) <az@zitc.de>',
+          message: 'PEP8',
+          status: 'success'
+        },
+        {
+          number: '1219',
+          author: 'Tom Gross (tomgross) <itconsense@gmail.com>',
+          message: 'Check out plone.app.discussion',
           status: 'success'
         },
       ]
